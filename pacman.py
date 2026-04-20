@@ -1,7 +1,7 @@
 import tkinter as tk 
 
 
-# select keyboard type # TO-DO / in progress.... / normaly done 
+# select keyboard type # normaly done 
 keyboardtype = None 
 
 def ask_keyborad_layout() : 
