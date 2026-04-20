@@ -1,7 +1,11 @@
 import tkinter as tk 
 
 
-# select keyboard type # normaly done 
+window = tk.Tk()
+window.title("pacman game _v2")
+window.geometry("1100x800")
+
+# select keyboard type # TO-DO / in progress.... / normaly done 
 keyboardtype = None 
 
 def ask_keyborad_layout() : 
@@ -27,20 +31,11 @@ def ask_keyborad_layout() :
 
 ask_keyborad_layout()
 
-
-window = tk.Tk()
-window.title("pacman game _v2")
-window.geometry("1100x800")
-
-
-
-
 area = tk.Canvas(window, width = 1000, height = 750 , bg = "#000000" )
 area.pack(padx = 5 , pady = 0 )
 
 area.create_arc( 100, 100, 200, 200, start = 30, extent = 300 , fill = "yellow" , outline = "yellow" , tag = "pac" )
 #def the Move_Entity_d()
-
 
 def Move_Entity_d( a, d, x, y,) :
     print(a)
@@ -48,7 +43,6 @@ def Move_Entity_d( a, d, x, y,) :
     area.update()
 
 #def the mov for pacman
-
 def Move_up(event): 
     Move_Entity_d("up", "pac", 0, 100)
     area.delete("pac")
@@ -69,7 +63,6 @@ def Move_right(event):
     Move_Entity_d("right", "pac", -100, 0)
     area.delete("pac")
     area.create_arc( 100, 100, 200, 200, start = 30, extent = 300 , fill = "yellow" , outline = "yellow" , tag = "pac" )
-
 
 #keyboard layout type a/q support (qwerty/azerty)
 if keyboardtype == "a":
