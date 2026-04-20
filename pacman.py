@@ -46,18 +46,29 @@ def Move_Entity_d( a, d, x, y,) :
     print(a)
     area.move( d, x, y)
     area.update()
-    #TO-DO add the feature that u implement 4 week ago on the dead usb drive (the pacman rotation ,so test if it is pacman and do if it is ) 
-
-
-
-
 
 #def the mov for pacman
-def Move_up(event):    Move_Entity_d("up", "pac", 0, -100)
-def Move_down(event):  Move_Entity_d("down", "pac", 0, 100)
-def Move_left(event):  Move_Entity_d("left", "pac", -100, 0)
-def Move_right(event): Move_Entity_d("right", "pac", 100, 0)
 
+def Move_up(event): 
+    Move_Entity_d("up", "pac", 0, 100)
+    area.delete("pac")
+    area.create_arc( 100, 100, 200, 200, start = 120, extent = 300 , fill = "yellow" , outline = "yellow" , tag = "pac" )
+
+def Move_down(event): 
+    Move_Entity_d("down", "pac", 0, -100) 
+    area.delete("pac")
+    area.create_arc( 100, 100, 200, 200, start = 300, extent = 300 , fill = "yellow" , outline = "yellow" , tag = "pac" )
+
+def Move_left(event):  
+    Move_Entity_d("left", "pac", 100, 0)
+    area.delete("pac")
+    area.create_arc( 100, 100, 200, 200, start = 210, extent = 300 , fill = "yellow" , outline = "yellow" , tag = "pac" )
+
+def Move_right(event): 
+
+    Move_Entity_d("right", "pac", -100, 0)
+    area.delete("pac")
+    area.create_arc( 100, 100, 200, 200, start = 30, extent = 300 , fill = "yellow" , outline = "yellow" , tag = "pac" )
 
 
 #keyboard layout type a/q support (qwerty/azerty)
