@@ -18,12 +18,14 @@ HOW YOU CAN MAKE PULL REQUEST
 
 All student will have to pull his version in the folder 
 /version_a_implementer
-you will have to comment your code with 
-an explanation of what you did 
+you will have to 
+-comment your code with an explanation of what you did 
 function you made, you use 
 a list of the name of the variable (so i don't use variable that are undefine ) 
-a folder containing all the dependencies (like lib you used )
-and if possible a makefile so it's easyser to build 
-make commit pla
+-and a folder containing all the dependencies (like lib you used )
 
-tanks for your participating !!! 
+
+make commit pls 
+i'm the only one doing smth on this 
+
+tanks for you to participate !!! 
