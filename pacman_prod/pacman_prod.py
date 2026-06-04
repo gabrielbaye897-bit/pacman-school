@@ -1,20 +1,29 @@
-
 import tkinter as tk 
 from PIL import Image, ImageTk
 from random import randint
 
 
+
 window = tk.Tk()
-window.title("pacman game _v2")
-window.geometry("2000x1000")
+
+window.title("pacman game _v3")
+
+Window_Height = window.winfo_screenheight() 
+Window_Width = window.winfo_screenwidth()
+screen_resolution = str(Window_Height)+'x'+str(Window_Width)
+window.geometry(screen_resolution)
 
 # select keyboard type # TO-DO / in progress.... / normaly done 
 keyboardtype = None 
 
 def ask_keyborad_layout() : 
+
     dialog = tk.Toplevel(window)
     dialog.title("keyboard Layout")
-    dialog.geometry("250x140")
+    Dynamic_height = Window_Height /10 
+    Dynamic_Width = Window_Width /10  
+    Dynamic_geometry = str(Window_Height)+'x'+str(Window_Height)
+    dialog.geometry(Dynamic_geometry)
     dialog.resizable(False, False)
     dialog.grab_set()
 
@@ -34,18 +43,15 @@ def ask_keyborad_layout() :
 
 ask_keyborad_layout()
 
-area = tk.Canvas(window, width = 1900, height = 950 , bg = "#000000" )
+area = tk.Canvas(window ,height = Window_Height, width = Window_Width , bg = "#000000" )
+#area.resizable(True,True)
 area.pack(padx = 5 , pady = 0 )
-
-
-# here i have some code that have been copy/pasted from roman version 
-
 
 
 
 
 area.create_arc( 100, 100, 200, 200, start = 30, extent = 300 , fill = "yellow" , outline = "yellow" , tag = "pac" )
-#def the Move_Entity_d()
+# make move 
 
 def Move_Entity_d( a, d, x, y,) :
     print(a)
@@ -76,8 +82,8 @@ def Move_right(event):
 
 
 #def mov for ghost (idk why they didn't fcking use Move_Entity_d() )
-# yeah i just c/p from others_ver/romane/romane_ver.py and this keep ghost in boundaries 
- 
+# yeah i just c/p from others_ver/romane/romane_ver.py and this (try) keep ghost in boundaries 
+''' 
 def Move_ghost():
     global posx_gb , posy_gb
     x = randint(1,4)
@@ -103,7 +109,7 @@ def Move_ghost():
         zone.move("ghostblue", 100, 0)
         posx_gb += 100
         zone.update()
-
+'''
 #keyboard layout type a/q support (qwerty/azerty)
 if keyboardtype == "a":
     window.bind("<z>", Move_up   )
@@ -124,9 +130,10 @@ else:
     window.bind("<s>", Move_down )
     window.bind("<S>", Move_down )
 
-window.bind("<Up>",  Move_up)
-window.bind("<Down>", Move_down)
-window.bind("<Left>", Move_left)
+window.bind("<Up>",    Move_up   )
+window.bind("<Down>",  Move_down )
+window.bind("<Left>",  Move_left )
+window.bind("<Right>", Move_right)
 
 
 #rectangle AB,AC,BD
@@ -157,7 +164,11 @@ area.create_rectangle((240,580),(260,730),   width=4, outline='blue', fill='blac
 
 
 
-Move_ghost()
+
+#Move_ghost()
+
+
+
 window.mainloop()
 
 

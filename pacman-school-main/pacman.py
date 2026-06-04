@@ -15,7 +15,7 @@ def ask_keyborad_layout() :
     dialog.resizable(False, False)
     dialog.grab_set()
 
-    tk.Label(dialog, text = "what's your type of keyboard", pady = 10).pack()
+    tk.Label(dialog, text = "what's the type of your keyboard", pady = 10).pack()
 
     def pick(type):
         global keyboardtype
