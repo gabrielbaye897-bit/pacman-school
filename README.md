@@ -28,4 +28,7 @@ a list of the name of the variable (so i don't use variable that are undefine )
 make commit pls 
 i'm the only one doing smth on this 
 
+i'll add issue request from now on 
+
+
 tanks for you to participate !!! 
