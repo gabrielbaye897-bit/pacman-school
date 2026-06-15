@@ -10,7 +10,9 @@ window.title("pacman game _v3")
 
 Window_Height = window.winfo_screenheight() 
 Window_Width = window.winfo_screenwidth()
-screen_resolution = str(Window_Height)+'x'+str(Window_Width)
+#screen_resolution = str(Window_Height)+'x'+str(Window_Width)
+screen_resolution = str(Window_Width)+'x'+str(Window_Height)
+
 window.geometry(screen_resolution)
 
 keyboardtype = None 
@@ -47,11 +49,22 @@ area.pack(padx = 5 , pady = 0 )
 
 
 
+#this a global var to set the global size of any case "sizegrid"
+
+gridsize = min(Window_Width, Window_Height) // 20 
+
+
+
+
+
+
+
+
 pac_x1 ,pac_y1 =100 ,100
-sizeofpac= 100 
-pac_x2 ,pac_y2 = pac_x1 + sizeofpac , pac_y1 + sizeofpac
+
+pac_x2 ,pac_y2 = pac_x1 + gridsize , pac_y1 + gridsize
 AngleStartCircle = 30 
-rateofchange=10
+rateofchange = gridsize
 
 
 def Makepac():
@@ -59,7 +72,7 @@ def Makepac():
     area.create_arc(
         pac_x1 ,pac_y1 ,pac_x2 ,pac_y2,
         start = AngleStartCircle, extent =300 ,
-        fill = "yellow", outline = "black", tag = "pac "
+        fill = "yellow", outline = "black", tag = "pac"
     )
 
 
@@ -74,7 +87,7 @@ def Move_up(event):
     global pac_x1 ,pac_y1 ,pac_x2 ,pac_y2 ,AngleStartCircle
     pac_y1 -= rateofchange
     pac_y2 -= rateofchange
-    AngleStartCircle = 90
+    AngleStartCircle = 120
     Makepac()
 
     
@@ -83,7 +96,7 @@ def Move_down(event):
     global pac_x1 ,pac_y1 ,pac_x2 ,pac_y2 ,AngleStartCircle
     pac_y1 += rateofchange
     pac_y2 += rateofchange
-    AngleStartCircle = 270
+    AngleStartCircle = 300
     Makepac()
     
 
@@ -91,7 +104,7 @@ def Move_left(event):
     global pac_x1 ,pac_x2 ,AngleStartCircle
     pac_x1 -= rateofchange
     pac_x2 -= rateofchange
-    AngleStartCircle = 180
+    AngleStartCircle = 210
     Makepac()
 
 def Move_right(event): 
@@ -110,32 +123,28 @@ posx_gb = blueghost_x
 posy_gb = blueghost_y
 
 def Move_ghost():
-    global posx_gb , posy_gb
-    x = randint(1,4)
+    global posx_gb, posy_gb
 
-    while(posy_gb >= Window_Width):
-        x = randint(1,4)
-    while(posx_gb >= Window_Height):
-        x = randint(1,4)
-    if (x == 1):
-        area.move("blueghost", -100, 0)
-        posx_gb -= 10
-        area.update()
-        area.after(1000)
-    if (x == 2):
-        area.move("blueghost", 0, -100)
-        posy_gb -= 10
-        area.update()
-    if (x == 3):
-        area.move("blueghost", 0, 100)
-        posy_gb += 10
-        area.update()
-    if (x == 4):
-        area.move("blueghost", 100, 0)
-        posx_gb += 10
-        area.update()
+    if posy_gb >= Window_Height or posx_gb >= Window_Width:
+        return
 
-#keyboard layout type a/q support (qwerty/azerty)
+    x = randint(1, 4)  
+    if x == 1:
+        area.move("blueghost", -gridsize, 0)
+        posx_gb -= gridsize
+    elif x == 2:
+        area.move("blueghost", 0, -gridsize)
+        posy_gb -= gridsize
+    elif x == 3:
+        area.move("blueghost", 0, gridsize)
+        posy_gb += gridsize
+    elif x == 4:
+        area.move("blueghost", gridsize, 0)
+        posx_gb += gridsize
+
+    window.after(500, Move_ghost)
+
+#keyboard layout type q/a support (qwerty/azerty)
 if keyboardtype == "a":
     window.bind("<z>", Move_up   )
     window.bind("<Z>", Move_up   )
@@ -161,45 +170,57 @@ window.bind("<Left>",  Move_left )
 window.bind("<Right>", Move_right)
 
 
-#if someone want to work on this go ahead 
-#nothing keeping you back
+
+def verify_hitbox(x1, y1, x2, y2, ox1, oy1, ox2, oy2):
+    return x1 < ox2 and x2 > ox1 and y1 < oy2 and y2 > oy1
 
 
-#this need to be sync with the var :
-#Window_Height
-#Window_Width 
+WALL_THICKNESS = gridsize
 
-#to be addaptative pls
-#and thanks you  
-'''
-#window_height can be x_top_right_corner
-#rectangle top ,1/2 left 
-#area.create_rectangle((100,100), (1800,120), width=4, outline='blue', fill='black')
-#area.create_rectangle((100,100),  (120,300), width=4, outline='blue', fill='black')
-area.create_rectangle((Window_height,100),(1800,500), width=4, outline='blue', fill='white')
 
-#rectangle EF,GE,FH
-#area.create_rectangle((100,830), (1800,850), width=4, outline='blue', fill='black')
-#area.create_rectangle((100,330),  (120,850), width=4, outline='blue', fill='black')
-#area.create_rectangle((1780,530),(1800,850), width=4, outline='blue', fill='black')
-
- #petit rectangle:
-#IP, IJ, JK, NO, PO
-#area.create_rectangle((720,340), (1080,360), width=4, outline='blue', fill='black')
-#area.create_rectangle((720,340),  (740,510), width=4, outline='blue', fill='black')
-#area.create_rectangle((720,490),  (885,510), width=4, outline='blue', fill='black')
-#area.create_rectangle((915,490), (1080,510), width=4, outline='blue', fill='black')
-#area.create_rectangle((1060,340),(1080,510), width=4, outline='blue', fill='black')
- #obstacles
-#QT, UX, Ya, ac
-#area.create_rectangle((240,220),(440,420),   width=4, outline='blue', fill='black')
-#area.create_rectangle((120,540),(320,560),   width=4, outline='blue', fill='black')
-#area.create_rectangle((240,580),(260,730),   width=4, outline='blue', fill='black')#xxx
-'''
+W = Window_Width
+H = Window_Height
 
 
 
-Move_ghost()
+WALLS_POS = [
+    # Outer border — top, left, right
+    (0.05, 0.10,  0.94, 0.12,  'pink'),    # top bar
+    (0.05, 0.10,  0.07, 0.29,  'red'),     # left bar
+    (0.93, 0.10,  0.94, 0.49,  'white'),   # right bar
+
+    # Inner cage (ghost house) 
+    (0.38, 0.33,  0.57, 0.35,  'blue'),   
+    (0.38, 0.33,  0.39, 0.50,  'blue'),   
+    (0.38, 0.48,  0.47, 0.50,  'blue'),   
+    (0.48, 0.48,  0.57, 0.50,  'blue'),   
+    (0.56, 0.33,  0.57, 0.50,  'blue'),   
+
+    # Obstacles
+    (0.13, 0.21,  0.23, 0.41,  'blue'),   
+    (0.06, 0.53,  0.17, 0.55,  'blue'),   
+    (0.13, 0.57,  0.14, 0.72,  'blue'),   
+]
+
+walls = []
+
+for ( rx1, ry1, rx2, ry2,colorfill) in WALLS_POS:
+
+    x1 = round(rx1 * W / gridsize) * gridsize
+    y1 = round(ry1 * H / gridsize) * gridsize
+    x2 = round(rx2 * W / gridsize) * gridsize
+    y2 = round(ry2 * H / gridsize) * gridsize
+
+    if x2 <= x1: x2 = x1 + gridsize
+    if y2 <= y1: y2 = y1 + gridsize
+
+    walls.append(( x1, y1, x2, y2))
+    area.create_rectangle(x1 ,y1 ,x2 ,y2 , width= 2 ,outline ='blue', fill= colorfill)
+
+def hits_wall(px1, py1, px2, py2):
+    return any(verify_hitbox(px1, py1, px2, py2, *w) for w in walls)
+
+
 
 window.mainloop()
 
