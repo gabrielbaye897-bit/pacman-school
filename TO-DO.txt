@@ -1,12 +1,4 @@
-we'd done the wall 
-To-do ,is now the colision with it 
+This project have been stoped due to the end of the year 
 
-i need to make the implementation 
+so thx for participating 
 
-if you want to make change pls make another branch and so pull from it pls 
-
-you must clean your code (it mean stop making deeply nested code that uses every possible var to set a random number and require to be feed by all his source 
-i'm begging you 
-last but not least if you want to continue the project pls tell me bc i might shut down this repo at the start of the next 
-school's year or during vacation 
-thx for contributing and wish you good luck for your exam 
