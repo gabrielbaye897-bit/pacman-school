@@ -1,34 +1,95 @@
 # pacman-school
-DEPENDENCIES
-
-this project require python installed and the libraries
-tkinter,PIL
 
 
-WHAT IS PACMAN-SCHOOL ?
+## WHAT IS PACMAN-SCHOOL ?
 
 this is a project for school and we will have different version of this project made by differents student and i will update regularly the TO-DO list  to know what we'll have to next 
 the TO-DO list is readable as a .txt file and can be open by windows and linux user or mac (using nvim or vim but that's only for linux user).
 
-I will do the implementation 
-in the final version (the most up to date) 
-of the feature made in the part project . 
+## how to install ? 
 
-HOW YOU CAN MAKE PULL REQUEST 
+#### for MacOS
 
-All student will have to pull his version in the folder 
-/version_a_implementer
-you will have to 
--comment your code with an explanation of what you did 
-function you made, you use 
-a list of the name of the variable (so i don't use variable that are undefine ) 
--and a folder containing all the dependencies (like lib you used )
+- install python 
 
+- downloads the project
 
-make commit pls 
-i'm the only one doing smth on this 
+```bash
+pip install git+https://github.com/Fullblood33/pacman-school.git
+```
+- launch it with
 
-i'll add issue request from now on 
+```bash
+pacman-school
+```
 
 
-tanks for you to participate !!! 
+
+
+
+#### for linux
+- downloads the .tar 
+
+```bash
+tar -xzf pacman-school-linux-x86_64.tar.gz
+```
+- go to the directory 
+```bash
+cd pacman-school
+```
+- launch it 
+```bash
+./pacman-school
+```
+
+### build from scratch
+
+#### for windows 
+
+- install python 
+
+- downloads the project 
+
+```PowerShell
+pipx install git+https://github.com/Fullblood33/pacman-school.git
+```
+- launch it with
+
+```PowerShell
+pacman-school
+```
+#### for MacOS
+
+- install python 
+
+```bash
+brew install python
+```
+
+- downloads the project
+
+```bash
+pip install git+https://github.com/Fullblood33/pacman-school.git
+```
+- launch it with
+
+```bash
+pacman-school
+```
+
+
+#### for Ubuntu(Debian based )
+
+```bash
+sudo apt install python 
+sudo apt install python3-tk
+#install python and Tk 
+```
+
+
+
+
+
+
+
+
