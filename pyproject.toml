@@ -1,0 +1,8 @@
+[project]
+name = "pacman-school"
+version = "1.0.0"
+description = "a PAC-MAN game made for a school project"
+requires-python = ">=3.10"
+
+[project.scripts]
+pacman-school ="pacman_school:main"
